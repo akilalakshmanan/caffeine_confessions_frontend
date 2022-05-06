@@ -52,8 +52,8 @@ function App() {
         type: 'CART_CLEAR'
       })
       localStorage.removeItem('cartItems');
-      const instance = axios.create({baseURL:"http://localhost:5000"})
-      const { data } = await instance.get(`/api/products/categories`);
+//       const instance = axios.create({baseURL:"http://localhost:5000"})
+//       const { data } = await instance.get(`/api/products/categories`);
     }
     if (query.get("canceled")) {
       console.log(
