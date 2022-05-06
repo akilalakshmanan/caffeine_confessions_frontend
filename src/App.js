@@ -48,6 +48,12 @@ function App() {
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       console.log("Order placed! You will receive an email confirmation.");
+      ctxDispatch({
+        type: 'CART_CLEAR'
+      })
+      localStorage.removeItem('cartItems');
+      const instance = axios.create({baseURL:"http://localhost:5000"})
+      const { data } = await instance.get(`/api/products/categories`);
     }
     if (query.get("canceled")) {
       console.log(
@@ -126,7 +132,7 @@ function App() {
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
-                    {cart.cartItems.length > 0 && (
+                    {cart.cartItems.length > 0 && cart.cartItems[0] !== null && (
                       <Badge pill bg="danger">
                         {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                       </Badge>
