@@ -5,5 +5,4 @@ RUN npm install --force
 RUN npm install -g serve
 COPY . /usr/src/app
 EXPOSE 3000
-RUN npm run build
-CMD ["serve","build"]
+CMD ["npm","start"]
