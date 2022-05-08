@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import {getError} from './utils';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('testing error conditions', ()=> {
+  it('get error with response', () => {
+    const errorWResp = {
+      response: {
+        data:{
+          message: "Data not available error"
+        }
+      }
+    }
+    expect(getError(errorWResp)).toBe("Data not available error")
+  })
+  it('get error without response', () => {
+    const errorWOResp = {
+      message: "Data mismatched error"
+    }
+    expect(getError(errorWOResp)).toBe("Data mismatched error")
+  })
+})
