@@ -1,4 +1,4 @@
-import {React,useContext,useState,useEffect} from 'react';
+import { React, useContext, useState, useEffect } from 'react';
 import logo from './logo.jpeg';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
@@ -12,7 +12,7 @@ import axios from 'axios';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardScreen from './screens/DashboardScreen';
 import { toast, ToastContainer } from 'react-toastify';
-import {getError} from './utils'
+import { getError } from './utils';
 import { Store } from './Store';
 import SearchBox from './components/SearchBox';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -28,6 +28,9 @@ import SignupScreen from './screens/SignupScreen';
 import UserListScreen from './screens/UserListScreen';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import QualityInfo from './components/QualityInfo';
+import AboutScreen from './screens/AboutScreen';
+import { Card } from 'react-bootstrap';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -46,23 +49,23 @@ function App() {
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
       ctxDispatch({
-        type: 'CART_CLEAR'
-      })
+        type: 'CART_CLEAR',
+      });
       localStorage.removeItem('cartItems');
-//       const instance = axios.create({baseURL:"http://localhost:5000"})
-//       const { data } = await instance.get(`/api/products/categories`);
+      //       const instance = axios.create({baseURL:"http://localhost:5000"})
+      //       const { data } = await instance.get(`/api/products/categories`);
     }
-    if (query.get("canceled")) {
+    if (query.get('cancelled')) {
       console.log(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+        "Order cancelled -- continue to shop around and checkout when you're ready."
       );
     }
     const fetchCategories = async () => {
       try {
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://localhost:5000' });
         const { data } = await instance.get(`/api/products/categories`);
         setCategories(data);
       } catch (err) {
@@ -74,19 +77,21 @@ function App() {
 
   const getMachineAction = async () => {
     try {
-      if(userInfo){
-        const response = await fetch(`http://localhost:5000/newFile/${userInfo._id}`);
+      if (userInfo) {
+        const response = await fetch(
+          `http://localhost:5000/newFile/${userInfo._id}`
+        );
         console.log(response);
         if (response.status === 200) {
           // getLocalStream();
-          console.log("Machine successfully found.");
+          console.log('Machine successfully found.');
           const myJson = await response.json(); //extract JSON from the http response
           console.log(myJson);
         } else {
-          console.log("not a 200");
+          console.log('not a 200');
         }
-      }else{
-        console.log("restricted from calling newFile API");
+      } else {
+        console.log('restricted from calling newFile API');
         // play()
       }
     } catch (err) {
@@ -94,7 +99,7 @@ function App() {
       console.log(err);
     } finally {
       // do it again in 2 seconds
-      setTimeout(getMachineAction , 10000);
+      setTimeout(getMachineAction, 10000);
     }
   };
 
@@ -116,20 +121,35 @@ function App() {
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-              <Button
+              {/* <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button>
+              </Button> */}
 
               <LinkContainer to="/">
-                <Navbar.Brand>Caffeine Confessions</Navbar.Brand>
+                <Navbar.Brand>Caffeine Confessions!!!</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
-                <Nav className="me-auto  w-100  justify-content-end">
+                {/* <SearchBox /> */}
+                <Nav
+                  className="me-auto w-100 justify-content-end my-lg-4"
+                  as="ul"
+                >
+                  <Nav.Link xs lg="2" href="/">
+                    Home
+                  </Nav.Link>
+                  {/* <Nav.Link href="/menu">Menu</Nav.Link> */}
+                  <Nav.Link href="/">Menu</Nav.Link>
+                  {/* <Nav.Link href="/blog">Blog</Nav.Link> */}
+                  <Nav.Link href="/">Blog</Nav.Link>
+                  {/* <Nav.Link href="/about">About</Nav.Link> */}
+                  {/* <LinkContainer to="/about">
+                    <Navbar.Brand>Caffeine Confessions!!!</Navbar.Brand>
+                  </LinkContainer> */}
+                  <Nav.Link href="/about">About</Nav.Link>
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && cart.cartItems[0] !== null && (
@@ -212,6 +232,7 @@ function App() {
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
+              <Route path="/about" element={<AboutScreen />}></Route>
               <Route
                 path="/profile"
                 element={

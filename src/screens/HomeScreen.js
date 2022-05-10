@@ -7,6 +7,7 @@ import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import QualityInfo from '../components/QualityInfo';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -48,21 +49,40 @@ function HomeScreen() {
       <Helmet>
         <title>Caffeine Coffesions</title>
       </Helmet>
-      <h1>Featured Products</h1>
-      <div className="products">
-        {loading ? (
-          <LoadingBox />
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <Row>
-            {products.map((product) => (
-              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Product product={product}></Product>
-              </Col>
-            ))}
-          </Row>
-        )}
+      <div
+        className="home-screen-bg"
+        style={{
+          backgroundImage:
+            'url(' +
+            'https://amymhaddad.s3.amazonaws.com/morocco-blue.png' +
+            ')',
+          height: '400px',
+          width: '100%',
+        }}
+      >
+        <h1>Featured Products</h1>
+        <div className="products">
+          {loading ? (
+            <LoadingBox />
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            <Row>
+              {products.map((product) => (
+                <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                  <Product product={product}></Product>
+                </Col>
+              ))}
+            </Row>
+          )}
+        </div>
+        <QualityInfo />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>idsrusdksk</p>
       </div>
     </div>
   );

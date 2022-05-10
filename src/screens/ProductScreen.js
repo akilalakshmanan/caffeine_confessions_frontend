@@ -27,24 +27,22 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
-
   const [selectedImage, setSelectedImage] = useState('');
 
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
-  const [{ loading, error, product }, dispatch] =
-    useReducer(reducer, {
-      product: [],
-      loading: true,
-      error: '',
-    });
+  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+    product: [],
+    loading: true,
+    error: '',
+  });
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://localhost:5000' });
         const result = await instance.get(`/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
@@ -93,7 +91,7 @@ function ProductScreen() {
               </Helmet>
               <h1>{product.name}</h1>
             </ListGroup.Item>
-            <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
             <ListGroup.Item>
               <Row xs={1} md={2} className="g-2">
                 {[product.image, ...product.images].map((x) => (
