@@ -68,16 +68,22 @@ export default function CartScreen() {
   };
 
   return (
-    <div>
+    <div style={{marginTop:"120px",
+    backgroundImage:
+          'url(' +
+          '/images/bg_4.jpg' +
+          ')',
+          height: '100%',
+          width: '100%'}}>
       <Helmet>
-        <title>Shopping Cart</title>
+        <title>Checkout Your Coffees</title>
       </Helmet>
-      <h1>Shopping Cart</h1>
+      <h2>Selected Products</h2>
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (
             <MessageBox>
-              Cart is empty. <Link to="/">Go Shopping</Link>
+              Cart is empty. <Link to="/shop">Shop Now</Link>
             </MessageBox>
           ) : (
             <ListGroup>

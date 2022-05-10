@@ -30,7 +30,10 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import QualityInfo from './components/QualityInfo';
 import AboutScreen from './screens/AboutScreen';
+import ControlledCarousel from './components/ControlledCarousel';
 import { Card } from 'react-bootstrap';
+import MenuScreen from './screens/MenuScreen';
+import ShopScreen from './screens/ShopScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -117,16 +120,16 @@ function App() {
             : 'site-container d-flex flex-column'
         }
       >
-        <ToastContainer position="bottom-center" limit={1} />
+        {/* <ToastContainer position="bottom-center" limit={1} /> */}
         <header>
-          <Navbar bg="dark" variant="dark" expand="lg">
+          <Navbar scrolling bg="dark" variant="dark" expand="sm" fixed="top">
             <Container>
-              {/* <Button
+              <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button> */}
+              </Button>
 
               <LinkContainer to="/">
                 <Navbar.Brand>Caffeine Confessions!!!</Navbar.Brand>
@@ -138,18 +141,16 @@ function App() {
                   className="me-auto w-100 justify-content-end my-lg-4"
                   as="ul"
                 >
-                  <Nav.Link xs lg="2" href="/">
+                  <Link to="/" className="nav-link">Home</Link>
+                  {/* <Nav.Link xs lg="2" href="/">
                     Home
-                  </Nav.Link>
+                  </Nav.Link> */}
+                  <Link to="/menu" className="nav-link">Menu</Link>
                   {/* <Nav.Link href="/menu">Menu</Nav.Link> */}
-                  <Nav.Link href="/">Menu</Nav.Link>
-                  {/* <Nav.Link href="/blog">Blog</Nav.Link> */}
-                  <Nav.Link href="/">Blog</Nav.Link>
+                  <Link to="/about" className="nav-link">About</Link>
                   {/* <Nav.Link href="/about">About</Nav.Link> */}
-                  {/* <LinkContainer to="/about">
-                    <Navbar.Brand>Caffeine Confessions!!!</Navbar.Brand>
-                  </LinkContainer> */}
-                  <Nav.Link href="/about">About</Nav.Link>
+                  <Link to="/shop" className="nav-link">Shop</Link>
+                  {/* <Nav.Link href="/shop">Shop</Nav.Link> */}
                   <Link to="/cart" className="nav-link">
                     Cart
                     {cart.cartItems.length > 0 && cart.cartItems[0] !== null && (
@@ -201,7 +202,7 @@ function App() {
             </Container>
           </Navbar>
         </header>
-        <div
+        {/* <div
           className={
             sidebarIsOpen
               ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
@@ -223,13 +224,15 @@ function App() {
               </Nav.Item>
             ))}
           </Nav>
-        </div>
+        </div> */}
         <main>
-          <Container className="mt-3">
+          {/* <Container className="mt-3"> */}
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/search" element={<SearchScreen />} />
+              <Route path="/menu" element={<MenuScreen />} />
+              <Route path="/shop" element={<ShopScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/about" element={<AboutScreen />}></Route>
@@ -330,7 +333,7 @@ function App() {
               ></Route>
               <Route path="/" element={<HomeScreen />} />
             </Routes>
-          </Container>
+          {/* </Container> */}
         </main>
         <footer>
           <div className="text-center">All rights reserved</div>

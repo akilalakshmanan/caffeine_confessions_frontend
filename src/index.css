@@ -1,10 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Open Sans", sans-serif;
 }
 
 .site-container {
@@ -35,12 +36,18 @@ img {
 }
 
 main {
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.btn-primary{
+  background: #c49b63;
+  border: 1px solid #c49b63;
+  color: #000;
 }
 
 .product {

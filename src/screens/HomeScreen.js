@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import QualityInfo from '../components/QualityInfo';
+import ControlledCarousel from '../components/ControlledCarousel';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -49,18 +50,19 @@ function HomeScreen() {
       <Helmet>
         <title>Caffeine Coffesions</title>
       </Helmet>
+      <ControlledCarousel />
       <div
         className="home-screen-bg"
         style={{
           backgroundImage:
             'url(' +
-            'https://amymhaddad.s3.amazonaws.com/morocco-blue.png' +
+            '/images/bg_4.jpg' +
             ')',
-          height: '400px',
+          height: '100%',
           width: '100%',
         }}
       >
-        <h1>Featured Products</h1>
+        {/* <h1>Featured Products</h1>
         <div className="products">
           {loading ? (
             <LoadingBox />
@@ -75,7 +77,7 @@ function HomeScreen() {
               ))}
             </Row>
           )}
-        </div>
+        </div> */}
         <QualityInfo />
         <br />
         <br />
