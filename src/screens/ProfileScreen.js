@@ -63,7 +63,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="container small-container">
+    <div className="container small-container" style={{marginTop:"120px"}}>
       <Helmet>
         <title>User Profile</title>
       </Helmet>

@@ -74,7 +74,7 @@ function ProductScreen() {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-    <div>
+    <div style={{marginTop:"120px"}}>
       <Row>
         <Col md={6}>
           <img

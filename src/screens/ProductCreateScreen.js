@@ -160,7 +160,7 @@ export default function ProductCreateScreen() {
     toast.success('Image removed successfully. click Update to apply it');
   };
   return (
-    <Container className="small-container">
+    <Container className="small-container" style={{marginTop:"120px"}}>
       <Helmet>
         <title>Create Product</title>
       </Helmet>

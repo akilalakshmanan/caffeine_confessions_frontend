@@ -20,7 +20,7 @@ function ControlledCarousel() {
             className="d-block w-100"
             src="/images/bg_1.jpg"
             alt="First slide"
-            interval="3000"
+            interval="1000"
             style={{height:"590px"}}
           />
         <Carousel.Caption>
@@ -39,7 +39,7 @@ function ControlledCarousel() {
             className="d-block w-100"
             src="/images/bg_2.jpg"
             alt="Second slide"
-            interval="3000"
+            interval="1000"
             style={{height:"590px"}}
           />
   
@@ -59,7 +59,7 @@ function ControlledCarousel() {
             className="d-block w-100"
             src="/images/bg_3.jpg"
             alt="Third slide"
-            interval="3000"
+            interval="1000"
             style={{height:"590px"}}
           />
   

@@ -46,21 +46,12 @@ function HomeScreen() {
     fetchData();
   }, []);
   return (
-    <div>
+    <div style={{marginTop:"120px"}}>
       <Helmet>
         <title>Caffeine Coffesions</title>
       </Helmet>
-      <ControlledCarousel />
       <div
         className="home-screen-bg"
-        style={{
-          backgroundImage:
-            'url(' +
-            '/images/bg_4.jpg' +
-            ')',
-          height: '100%',
-          width: '100%',
-        }}
       >
         {/* <h1>Featured Products</h1>
         <div className="products">

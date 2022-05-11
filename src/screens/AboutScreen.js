@@ -2,7 +2,7 @@ import QualityInfo from '../components/QualityInfo';
 
 function AboutScreen() {
   return (
-    <div>
+    <div style={{marginTop:"120px"}}>
       {/* <QualityInfo /> */}
       <br></br>
       <br></br>

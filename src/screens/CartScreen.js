@@ -68,13 +68,7 @@ export default function CartScreen() {
   };
 
   return (
-    <div style={{marginTop:"120px",
-    backgroundImage:
-          'url(' +
-          '/images/bg_4.jpg' +
-          ')',
-          height: '100%',
-          width: '100%'}}>
+    <div style={{marginTop:"120px"}}>
       <Helmet>
         <title>Checkout Your Coffees</title>
       </Helmet>
@@ -96,7 +90,7 @@ export default function CartScreen() {
                         alt={item.name}
                         className="img-fluid rounded img-thumbnail"
                       ></img>{' '}
-                      <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                      {item.name}
                     </Col>
                     <Col md={3}>
                       <Button
@@ -106,7 +100,7 @@ export default function CartScreen() {
                         variant="light"
                         disabled={item.quantity === 1}
                       >
-                          minus one
+                          &#10134;
                         {/* <i className="fas fa-minus-circle"></i> */}
                       </Button>{' '}
                       <span>{item.quantity}</span>{' '}
@@ -117,7 +111,7 @@ export default function CartScreen() {
                         }
                         disabled={item.quantity === item.countInStock}
                       >
-                          add one
+                          &#10133;
                         {/* <i className="fas fa-plus-circle"></i> */}
                       </Button>
                     </Col>
@@ -127,7 +121,8 @@ export default function CartScreen() {
                         onClick={() => removeItemHandler(item)}
                         variant="light"
                       >
-                        <i className="fas fa-trash"></i>
+                        &#x1F5D1;
+                        {/* <i className="fas fa-trash"></i> */}
                       </Button>
                     </Col>
                   </Row>
@@ -137,7 +132,7 @@ export default function CartScreen() {
           )}
         </Col>
         <Col md={4}>
-          <Card>
+          <Card style={{marginRight: "10px"}}>
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroup.Item>

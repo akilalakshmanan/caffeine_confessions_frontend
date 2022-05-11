@@ -122,7 +122,7 @@ function App() {
       >
         {/* <ToastContainer position="bottom-center" limit={1} /> */}
         <header>
-          <Navbar scrolling bg="dark" variant="dark" expand="sm" fixed="top">
+          <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
             <Container>
               <Button
                 variant="dark"
@@ -225,7 +225,15 @@ function App() {
             ))}
           </Nav>
         </div> */}
-        <main>
+        <main style={{
+      backgroundImage:
+        'url(' +
+        '/images/bg_4.jpg' +
+        ')',
+      height: '100%',
+      width: '100%',
+    }}>
+      <ControlledCarousel />
           {/* <Container className="mt-3"> */}
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
@@ -335,7 +343,7 @@ function App() {
             </Routes>
           {/* </Container> */}
         </main>
-        <footer>
+        <footer style={{background: "#120f0f"}}>
           <div className="text-center">All rights reserved</div>
         </footer>
       </div>

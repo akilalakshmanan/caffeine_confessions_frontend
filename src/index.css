@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Open Sans", sans-serif;
+  /* overflow: hidden; */
 }
 
 .site-container {
@@ -14,6 +15,29 @@ body {
 
 main {
   flex: 1;
+}
+
+h1, h2, h3, h4, h5, label, a{
+  color: grey;
+}
+
+.carousel-control-next:hover{
+  background: transparent;
+  border: 0px solid #c49b63;
+  color: #000;
+}
+
+.carousel-control-prev:hover{
+  background: transparent;
+  border: 0px solid #c49b63;
+  color: #000;
+}
+
+a:hover{
+  background: #c49b63;
+  /* border: 1px solid #c49b63; */
+  border-radius: 3px;
+  color: #000;
 }
 
 /* header {
@@ -45,6 +69,12 @@ main {
 }
 
 .btn-primary{
+  background: burlywood;
+  border: 1px solid #c49b63;
+  color: black;
+}
+
+.btn-primary:hover{
   background: #c49b63;
   border: 1px solid #c49b63;
   color: #000;

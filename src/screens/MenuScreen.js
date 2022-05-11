@@ -1,7 +1,7 @@
 import { Row } from "react-bootstrap";
 import MenuItem from "../components/MenuItem";
 import Col from 'react-bootstrap/Col';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import logger from 'use-reducer-logger';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -27,12 +27,21 @@ function MenuScreen(){
         error: '',
       });
 
+    const [categories,setCategories]=useState([]);
+    const [catProds,setCatProds] = useState(null);
+
       useEffect(() => {
         const fetchData = async () => {
           dispatch({ type: 'FETCH_REQUEST' });
           try {
             const instance = axios.create({ baseURL: 'http://localhost:5000' });
             const result = await instance.get('/api/products');
+            const categoriesSet = new Set();
+            for(let i=0;i<result.data.length;i++){
+              categoriesSet.add(result.data[i].category)
+            }
+            let sample = Array.from(categoriesSet);
+            setCategories(sample);
             dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
           } catch (err) {
             dispatch({ type: 'FETCH_FAIL', payload: err.message });
@@ -41,7 +50,11 @@ function MenuScreen(){
         fetchData();
       }, []);
     return (
-        <div style={{marginTop:"106px",
+        <div className="menu-div" style={{
+          marginTop:"120px",
+          marginLeft: "30px",
+          marginRight: "30px",
+          marginBottom: "30px",
           backgroundImage:
           'url(' +
           '/images/bg_4.jpg' +
@@ -54,14 +67,34 @@ function MenuScreen(){
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
-            <Row>
-                {products.map((product) => (
-                    
-                <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                  <MenuItem product={product}></MenuItem>
-                </Col>
-              ))}
-            </Row>)}
+            <div>
+                {/* {categories}
+              {products.map((product) =>{
+                if(product.category==='coffee')
+                  return <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                    <MenuItem product={product}></MenuItem>
+                  </Col>
+                  })
+              } */}
+              { categories.map((categorie) => (
+                <div>
+                  <h3 style={{
+                    marginLeft: "10px"}}>{categorie}</h3>
+                  <Row style={{
+                    marginLeft: "10px",
+                    marginTop: "10px"}}>
+                      {products.map((product) =>{
+                      if(product.category===categorie)
+                      return <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                        <MenuItem product={product}></MenuItem>
+                      </Col>
+                      })}
+                  </Row>
+                </div>))
+              }
+            </div>
+          )
+        }
         </div>
     )
 }

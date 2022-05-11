@@ -43,7 +43,7 @@ export default function SigninScreen() {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <Container className="small-container">
+    <Container className="small-container" style={{marginTop:"120px"}}>
       <Helmet>
         <title>Sign In</title>
       </Helmet>
@@ -69,7 +69,7 @@ export default function SigninScreen() {
           <Button type="submit">Sign In</Button>
         </div>
         <div className="mb-3">
-          New customer?{' '}
+          <label>New customer ?</label>&nbsp;
           <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
         </div>
       </Form>

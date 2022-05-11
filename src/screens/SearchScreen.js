@@ -132,7 +132,7 @@ export default function SearchScreen() {
     return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
-    <div>
+    <div style={{marginTop:"120px"}}>
       <Helmet>
         <title>Search Products</title>
       </Helmet>

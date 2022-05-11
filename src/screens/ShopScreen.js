@@ -46,7 +46,10 @@ function ShopScreen() {
     fetchData();
   }, []);
   return (
-    <div style={{marginTop:"60px"}}>
+    <div style={{marginTop:"60px",
+          marginLeft: "30px",
+          marginRight: "30px",
+          marginBottom: "30px",}}>
       <Helmet>
         <title>Happy Caffeine</title>
       </Helmet>
