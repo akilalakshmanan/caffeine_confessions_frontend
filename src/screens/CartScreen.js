@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function CartScreen() {
   const navigate = useNavigate();
@@ -16,18 +17,18 @@ export default function CartScreen() {
   const {
     cart: { cartItems },
   } = state;
+  const { userInfo } = state;
 
   const getPriceIdAndQuantity = (cartItems) => {
-    console.log(cartItems);
-    let priceId = '';
-    cartItems.forEach((item) => {
-      if (priceId !== '') {
-        priceId += '|' + item.priceIdStripe + "::" + item.quantity
-      } else {
-        priceId = item.priceIdStripe + "::" + item.quantity
-      }
-    })
-    return priceId
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const orderId = uuidv4();
+    localStorage.setItem("clientOrderId",orderId);
+    const sessionData = {
+      userId: userInfo._id,
+      clientOrderId: orderId,
+      cartItems: cartItems
+    }
+    return JSON.stringify(sessionData);
   }
 
   const updateCartHandler = async (item, quantity) => {
@@ -143,8 +144,9 @@ export default function CartScreen() {
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <form action="/create-checkout-session" method='POST'>
+                  <form action="/api/orders/create-checkout-session" method='POST'>
                   <input type="hidden" name="priceIdAQuantity" value={getPriceIdAndQuantity(cartItems)} />
+                  <input type="hidden" name="authToken" value={`Bearer ${userInfo.token}`} />
                   <div className="d-grid">
                     <Button
                       type="submit"

@@ -15,7 +15,7 @@ function MenuItem(props){
             }}></div>
             <img src={product.image} className="card-img-top" alt={product.name} style={{height:"60px",width:"60px",borderRadius: "50%"}}/>
             <div>
-                <h3 style={{color:"#fff", textTransform: "uppercase"}}>{product.name}</h3>
+                <h3 style={{color:"#fff"}}>{product.name}</h3>
                 <span style={{color:"white"}}>${product.price}</span>
             </div>
             <p style={{color:"gray"}}>{product.description}</p>

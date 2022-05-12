@@ -50,6 +50,20 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const updateOrderStatus = async () => {
+      try {
+        const instance = axios.create({baseURL:"http://localhost:5000"});
+        const { data } = await instance.get('/api/orders/updateOrder', {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        // const {data} = await instance.post('/api/orders/updateOrder', {
+        //   headers: { Authorization: `Bearer ${userInfo.token}` },
+        // });
+        console.log("data",data);
+      } catch(err){
+        console.log(err);
+      }
+    }
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
@@ -58,8 +72,7 @@ function App() {
         type: 'CART_CLEAR',
       });
       localStorage.removeItem('cartItems');
-      //       const instance = axios.create({baseURL:"http://localhost:5000"})
-      //       const { data } = await instance.get(`/api/products/categories`);
+      updateOrderStatus();
     }
     if (query.get('cancelled')) {
       console.log(
