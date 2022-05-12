@@ -52,18 +52,18 @@ function App() {
   useEffect(() => {
     const updateOrderStatus = async () => {
       try {
-        const instance = axios.create({baseURL:"http://localhost:5000"});
+        const instance = axios.create({ baseURL: 'http://localhost:5000' });
         const { data } = await instance.get('/api/orders/updateOrder', {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         // const {data} = await instance.post('/api/orders/updateOrder', {
         //   headers: { Authorization: `Bearer ${userInfo.token}` },
         // });
-        console.log("data",data);
-      } catch(err){
+        console.log('data', data);
+      } catch (err) {
         console.log(err);
       }
-    }
+    };
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
@@ -145,7 +145,7 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>Caffeine Confessions!!!</Navbar.Brand>
+                <Navbar.Brand>Caffeine Confessions</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -154,15 +154,23 @@ function App() {
                   className="me-auto w-100 justify-content-end my-lg-4"
                   as="ul"
                 >
-                  <Link to="/" className="nav-link">Home</Link>
+                  <Link to="/" className="nav-link">
+                    Home
+                  </Link>
                   {/* <Nav.Link xs lg="2" href="/">
                     Home
                   </Nav.Link> */}
-                  <Link to="/menu" className="nav-link">Menu</Link>
+                  <Link to="/menu" className="nav-link">
+                    Menu
+                  </Link>
                   {/* <Nav.Link href="/menu">Menu</Nav.Link> */}
-                  <Link to="/about" className="nav-link">About</Link>
+                  <Link to="/about" className="nav-link">
+                    About
+                  </Link>
                   {/* <Nav.Link href="/about">About</Nav.Link> */}
-                  <Link to="/shop" className="nav-link">Shop</Link>
+                  <Link to="/shop" className="nav-link">
+                    Shop
+                  </Link>
                   {/* <Nav.Link href="/shop">Shop</Nav.Link> */}
                   <Link to="/cart" className="nav-link">
                     Cart
@@ -238,34 +246,33 @@ function App() {
             ))}
           </Nav>
         </div> */}
-        <main style={{
-      backgroundImage:
-        'url(' +
-        '/images/bg_4.jpg' +
-        ')',
-      height: '100%',
-      width: '100%',
-    }}>
-      <ControlledCarousel />
+        <main
+          style={{
+            backgroundImage: 'url(' + '/images/bg_4.jpg' + ')',
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          <ControlledCarousel />
           {/* <Container className="mt-3"> */}
-            <Routes>
-              <Route path="/product/:slug" element={<ProductScreen />} />
-              <Route path="/cart" element={<CartScreen />} />
-              <Route path="/search" element={<SearchScreen />} />
-              <Route path="/menu" element={<MenuScreen />} />
-              <Route path="/shop" element={<ShopScreen />} />
-              <Route path="/signin" element={<SigninScreen />} />
-              <Route path="/signup" element={<SignupScreen />} />
-              <Route path="/about" element={<AboutScreen />}></Route>
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfileScreen />
-                  </ProtectedRoute>
-                }
-              />
-              {/* <Route
+          <Routes>
+            <Route path="/product/:slug" element={<ProductScreen />} />
+            <Route path="/cart" element={<CartScreen />} />
+            <Route path="/search" element={<SearchScreen />} />
+            <Route path="/menu" element={<MenuScreen />} />
+            <Route path="/shop" element={<ShopScreen />} />
+            <Route path="/signin" element={<SigninScreen />} />
+            <Route path="/signup" element={<SignupScreen />} />
+            <Route path="/about" element={<AboutScreen />}></Route>
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfileScreen />
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route
                 path="/map"
                 element={
                   <ProtectedRoute>
@@ -273,8 +280,8 @@ function App() {
                   </ProtectedRoute>
                 }
               /> */}
-              {/* <Route path="/placeorder" element={<PlaceOrderScreen />} /> */}
-              {/* <Route
+            {/* <Route path="/placeorder" element={<PlaceOrderScreen />} /> */}
+            {/* <Route
                 path="/order/:id"
                 element={
                   <ProtectedRoute>
@@ -282,7 +289,7 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route> */}
-              {/* <Route
+            {/* <Route
                 path="/orderhistory"
                 element={
                   <ProtectedRoute>
@@ -290,21 +297,21 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route> */}
-              {/* <Route
+            {/* <Route
                 path="/shipping"
                 element={<ShippingAddressScreen />}
               ></Route> */}
-              {/* <Route path="/payment" element={<PaymentMethodScreen />}></Route> */}
-              {/* Admin Routes */}
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <AdminRoute>
-                    <DashboardScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              {/* <Route
+            {/* <Route path="/payment" element={<PaymentMethodScreen />}></Route> */}
+            {/* Admin Routes */}
+            <Route
+              path="/admin/dashboard"
+              element={
+                <AdminRoute>
+                  <DashboardScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            {/* <Route
                 path="/admin/orders"
                 element={
                   <AdminRoute>
@@ -312,51 +319,51 @@ function App() {
                   </AdminRoute>
                 }
               ></Route> */}
-              <Route
-                path="/admin/users"
-                element={
-                  <AdminRoute>
-                    <UserListScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/products"
-                element={
-                  <AdminRoute>
-                    <ProductListScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/product/:id"
-                element={
-                  <AdminRoute>
-                    <ProductEditScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/product/create"
-                element={
-                  <AdminRoute>
-                    <ProductCreateScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route
-                path="/admin/user/:id"
-                element={
-                  <AdminRoute>
-                    <UserEditScreen />
-                  </AdminRoute>
-                }
-              ></Route>
-              <Route path="/" element={<HomeScreen />} />
-            </Routes>
+            <Route
+              path="/admin/users"
+              element={
+                <AdminRoute>
+                  <UserListScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/products"
+              element={
+                <AdminRoute>
+                  <ProductListScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/product/:id"
+              element={
+                <AdminRoute>
+                  <ProductEditScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/product/create"
+              element={
+                <AdminRoute>
+                  <ProductCreateScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path="/admin/user/:id"
+              element={
+                <AdminRoute>
+                  <UserEditScreen />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route path="/" element={<HomeScreen />} />
+          </Routes>
           {/* </Container> */}
         </main>
-        <footer style={{background: "#120f0f"}}>
+        <footer style={{ background: '#120f0f' }}>
           <div className="text-center">All rights reserved</div>
         </footer>
       </div>

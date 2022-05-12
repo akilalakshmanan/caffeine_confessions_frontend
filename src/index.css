@@ -5,7 +5,7 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   /* overflow: hidden; */
 }
 
@@ -17,23 +17,32 @@ main {
   flex: 1;
 }
 
-h1, h2, h3, h4, h5, label, a{
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+a {
   color: grey;
 }
+td {
+  color: white;
+}
 
-.carousel-control-next:hover{
+.carousel-control-next:hover {
   background: transparent;
   border: 0px solid #c49b63;
   color: #000;
 }
 
-.carousel-control-prev:hover{
+.carousel-control-prev:hover {
   background: transparent;
   border: 0px solid #c49b63;
   color: #000;
 }
 
-a:hover{
+a:hover {
   background: #c49b63;
   /* border: 1px solid #c49b63; */
   border-radius: 3px;
@@ -68,13 +77,13 @@ main {
   justify-content: center;
 }
 
-.btn-primary{
+.btn-primary {
   background: burlywood;
   border: 1px solid #c49b63;
   color: black;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background: #c49b63;
   border: 1px solid #c49b63;
   color: #000;
