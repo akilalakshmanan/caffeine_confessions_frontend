@@ -42,7 +42,7 @@ function ProductScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const result = await instance.get(`/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
@@ -57,7 +57,7 @@ function ProductScreen() {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const instance = axios.create({ baseURL: 'http://localhost:5000' });
+    const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
     const { data } = await instance.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
@@ -74,7 +74,7 @@ function ProductScreen() {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <Row>
         <Col md={6}>
           <img

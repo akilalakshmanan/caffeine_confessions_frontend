@@ -36,7 +36,7 @@ export default function ProfileScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const instance = axios.create({baseURL:"http://localhost:5000"});
+      const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
       const { data } = await instance.put(
         '/api/users/profile',
         {
@@ -63,7 +63,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="container small-container" style={{marginTop:"120px"}}>
+    <div className="container small-container" style={{ marginTop: '120px' }}>
       <Helmet>
         <title>User Profile</title>
       </Helmet>

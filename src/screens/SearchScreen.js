@@ -91,7 +91,7 @@ export default function SearchScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(
           // `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
           `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&order=${order}`
@@ -111,7 +111,7 @@ export default function SearchScreen() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(`/api/products/categories`);
         setCategories(data);
       } catch (err) {
@@ -132,7 +132,7 @@ export default function SearchScreen() {
     return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Search Products</title>
       </Helmet>

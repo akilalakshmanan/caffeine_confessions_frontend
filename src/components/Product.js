@@ -16,7 +16,7 @@ function Product(props) {
   const addToCartHandler = async (item) => {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const instance = axios.create({ baseURL: 'http://localhost:5000' });
+    const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
     const { data } = await instance.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
@@ -29,12 +29,12 @@ function Product(props) {
   };
 
   return (
-    <Card style={{backgroundColor:"transparent"}}>
+    <Card style={{ backgroundColor: 'transparent' }}>
       <img src={product.image} className="card-img-top" alt={product.name} />
       <Card.Body>
-        <Card.Title style={{color:"white"}}>{product.name}</Card.Title>
-        <Card.Text style={{color:"white"}}>${product.price}</Card.Text>
-        <Card.Text style={{color:"white"}}>{product.description}</Card.Text>
+        <Card.Title style={{ color: 'white' }}>{product.name}</Card.Title>
+        <Card.Text style={{ color: 'white' }}>${product.price}</Card.Text>
+        <Card.Text style={{ color: 'white' }}>{product.description}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>
             Out of stock

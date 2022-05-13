@@ -36,11 +36,11 @@ export default function DashboardScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get('/api/orders/summary', {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        console.log("data",data);
+        console.log('data', data);
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
         dispatch({
@@ -53,7 +53,7 @@ export default function DashboardScreen() {
   }, [userInfo]);
 
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <h1>Dashboard</h1>
       {loading ? (
         <LoadingBox />
@@ -66,8 +66,11 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {console.log('summarysummary',summary)}
-                    {summary && summary.users && summary.users.length !==0 && summary.users[0]
+                    {console.log('summarysummary', summary)}
+                    {summary &&
+                    summary.users &&
+                    summary.users.length !== 0 &&
+                    summary.users[0]
                       ? summary.users[0].numUsers
                       : 0}
                   </Card.Title>
@@ -79,7 +82,10 @@ export default function DashboardScreen() {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary && summary.orders && summary.orders.length !==0 && summary.users[0]
+                    {summary &&
+                    summary.orders &&
+                    summary.orders.length !== 0 &&
+                    summary.users[0]
                       ? summary.orders[0].numOrders
                       : 0}
                   </Card.Title>
@@ -92,7 +98,10 @@ export default function DashboardScreen() {
                 <Card.Body>
                   <Card.Title>
                     $
-                    {summary && summary.orders && summary.orders.length !==0 && summary.users[0]
+                    {summary &&
+                    summary.orders &&
+                    summary.orders.length !== 0 &&
+                    summary.users[0]
                       ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>

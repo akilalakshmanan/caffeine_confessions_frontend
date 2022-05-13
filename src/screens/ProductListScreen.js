@@ -80,10 +80,13 @@ export default function ProductListScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
-        const { data } = await instance.get(`/api/products/admin?page=${page} `, {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
+        const { data } = await instance.get(
+          `/api/products/admin?page=${page} `,
+          {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+          }
+        );
 
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {}
@@ -100,7 +103,7 @@ export default function ProductListScreen() {
     if (window.confirm('Are you sure to create?')) {
       try {
         // dispatch({ type: 'CREATE_REQUEST' });
-        // const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        // const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         // const { data } = await instance.post(
         //   '/api/products',
         //   {
@@ -133,7 +136,7 @@ export default function ProductListScreen() {
   const deleteHandler = async (product) => {
     if (window.confirm('Are you sure to delete?')) {
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         await instance.delete(`/api/products/${product._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
@@ -149,7 +152,7 @@ export default function ProductListScreen() {
   };
 
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <Row>
         <Col>
           <h1>Products</h1>

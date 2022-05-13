@@ -52,7 +52,7 @@ export default function UserListScreen() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(`/api/users`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
@@ -75,7 +75,7 @@ export default function UserListScreen() {
     if (window.confirm('Are you sure to delete?')) {
       try {
         dispatch({ type: 'DELETE_REQUEST' });
-        const instance = axios.create({baseURL:"http://localhost:5000"})
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         await instance.delete(`/api/users/${user._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
@@ -90,7 +90,7 @@ export default function UserListScreen() {
     }
   };
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Users</title>
       </Helmet>

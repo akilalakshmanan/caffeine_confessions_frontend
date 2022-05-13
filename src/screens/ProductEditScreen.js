@@ -69,7 +69,7 @@ export default function ProductEditScreen() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const instance = axios.create({baseURL:"http://localhost:5000"});
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(`/api/products/${productId}`);
         setName(data.name);
         setSlug(data.slug);
@@ -96,7 +96,7 @@ export default function ProductEditScreen() {
     e.preventDefault();
     try {
       dispatch({ type: 'UPDATE_REQUEST' });
-      const instance = axios.create({baseURL:"http://localhost:5000"});
+      const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
       await instance.put(
         `/api/products/${productId}`,
         {
@@ -132,7 +132,7 @@ export default function ProductEditScreen() {
     bodyFormData.append('file', file);
     try {
       dispatch({ type: 'UPLOAD_REQUEST' });
-      const instance = axios.create({baseURL:"http://localhost:5000"});
+      const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
       const { data } = await instance.post('/api/upload', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -160,7 +160,7 @@ export default function ProductEditScreen() {
     toast.success('Image removed successfully. click Update to apply it');
   };
   return (
-    <Container className="small-container" style={{marginTop:"120px"}}>
+    <Container className="small-container" style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Edit Product ${productId}</title>
       </Helmet>

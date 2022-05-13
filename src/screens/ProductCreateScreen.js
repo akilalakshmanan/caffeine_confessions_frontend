@@ -66,37 +66,37 @@ export default function ProductCreateScreen() {
   const [isActive, setIsActive] = useState('');
 
   // useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     dispatch({ type: 'FETCH_REQUEST' });
-    //     const instance = axios.create({baseURL:"http://localhost:5000"});
-    //     const { data } = await instance.get(`/api/products/${productId}`);
-    //     setName(data.name);
-    //     setSlug(data.slug);
-    //     setPrice(data.price);
-    //     setImage(data.image);
-    //     setImages(data.images);
-    //     setCategory(data.category);
-    //     setCountInStock(data.countInStock);
-    //     setBrand(data.brand);
-    //     setDescription(data.description);
-    //     setIsActive(data.isActive);
-    //     dispatch({ type: 'FETCH_SUCCESS' });
-    //   } catch (err) {
-    //     dispatch({
-    //       type: 'FETCH_FAIL',
-    //       payload: getError(err),
-    //     });
-    //   }
-    // };
-    // fetchData();
+  // const fetchData = async () => {
+  //   try {
+  //     dispatch({ type: 'FETCH_REQUEST' });
+  //     const instance = axios.create({baseURL:"http://172.17.0.2:5000"});
+  //     const { data } = await instance.get(`/api/products/${productId}`);
+  //     setName(data.name);
+  //     setSlug(data.slug);
+  //     setPrice(data.price);
+  //     setImage(data.image);
+  //     setImages(data.images);
+  //     setCategory(data.category);
+  //     setCountInStock(data.countInStock);
+  //     setBrand(data.brand);
+  //     setDescription(data.description);
+  //     setIsActive(data.isActive);
+  //     dispatch({ type: 'FETCH_SUCCESS' });
+  //   } catch (err) {
+  //     dispatch({
+  //       type: 'FETCH_FAIL',
+  //       payload: getError(err),
+  //     });
+  //   }
+  // };
+  // fetchData();
   // }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       dispatch({ type: 'CREATE_REQUEST' });
-      const instance = axios.create({baseURL:"http://localhost:5000"});
+      const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
       const { data } = await instance.post(
         `/api/products/`,
         {
@@ -109,7 +109,7 @@ export default function ProductCreateScreen() {
           brand,
           countInStock,
           description,
-          isActive
+          isActive,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -132,7 +132,7 @@ export default function ProductCreateScreen() {
     bodyFormData.append('file', file);
     try {
       dispatch({ type: 'UPLOAD_REQUEST' });
-      const instance = axios.create({baseURL:"http://localhost:5000"});
+      const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
       const { data } = await instance.post('/api/upload', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -160,7 +160,7 @@ export default function ProductCreateScreen() {
     toast.success('Image removed successfully. click Update to apply it');
   };
   return (
-    <Container className="small-container" style={{marginTop:"120px"}}>
+    <Container className="small-container" style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Create Product</title>
       </Helmet>

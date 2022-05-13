@@ -34,7 +34,7 @@ function ShopScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const result = await instance.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
@@ -46,20 +46,21 @@ function ShopScreen() {
     fetchData();
   }, []);
   return (
-    <div style={{marginTop:"60px",
-          marginLeft: "30px",
-          marginRight: "30px",
-          marginBottom: "30px",}}>
+    <div
+      style={{
+        marginTop: '60px',
+        marginLeft: '30px',
+        marginRight: '30px',
+        marginBottom: '30px',
+      }}
+    >
       <Helmet>
         <title>Happy Caffeine</title>
       </Helmet>
       <div
         className="home-screen-bg"
         style={{
-          backgroundImage:
-            'url(' +
-            '/images/bg_4.jpg' +
-            ')',
+          backgroundImage: 'url(' + '/images/bg_4.jpg' + ')',
           height: '100%',
           width: '100%',
         }}

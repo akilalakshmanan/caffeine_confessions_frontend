@@ -29,7 +29,7 @@ export default function SignupScreen() {
       return;
     }
     try {
-      const instance = Axios.create({baseURL:"http://localhost:5000"});
+      const instance = Axios.create({ baseURL: 'http://172.17.0.2:5000' });
       const { data } = await instance.post('/api/users/signup', {
         name,
         email,
@@ -50,7 +50,7 @@ export default function SignupScreen() {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <Container className="small-container" style={{marginTop:"120px"}}>
+    <Container className="small-container" style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
@@ -89,7 +89,7 @@ export default function SignupScreen() {
           <Button type="submit">Sign Up</Button>
         </div>
         <div className="mb-3">
-        <label>Already have an account?</label>&nbsp;
+          <label>Already have an account?</label>&nbsp;
           <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
         </div>
       </Form>

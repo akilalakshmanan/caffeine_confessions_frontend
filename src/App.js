@@ -54,7 +54,7 @@ function App() {
   useEffect(() => {
     const updateOrderStatus = async () => {
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get('/api/orders/updateOrder', {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
@@ -80,7 +80,7 @@ function App() {
     }
     const fetchCategories = async () => {
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(`/api/products/categories`);
         setCategories(data);
       } catch (err) {

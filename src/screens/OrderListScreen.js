@@ -51,7 +51,7 @@ export default function OrderListScreen() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const { data } = await instance.get(`/api/orders`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });

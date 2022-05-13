@@ -34,7 +34,7 @@ function HomeScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const instance = axios.create({ baseURL: 'http://localhost:5000' });
+        const instance = axios.create({ baseURL: 'http://172.17.0.2:5000' });
         const result = await instance.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
@@ -46,13 +46,11 @@ function HomeScreen() {
     fetchData();
   }, []);
   return (
-    <div style={{marginTop:"120px"}}>
+    <div style={{ marginTop: '120px' }}>
       <Helmet>
         <title>Caffeine Coffesions</title>
       </Helmet>
-      <div
-        className="home-screen-bg"
-      >
+      <div className="home-screen-bg">
         {/* <h1>Featured Products</h1>
         <div className="products">
           {loading ? (
