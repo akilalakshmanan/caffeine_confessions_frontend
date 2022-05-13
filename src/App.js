@@ -105,14 +105,13 @@ function App() {
         <header>
           <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
             <Container>
-              <Button
-                variant="dark"
-                onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+              <LinkContainer
+                to="/"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
               >
-                <i className="fas fa-bars"></i>
-              </Button>
-
-              <LinkContainer to="/">
                 <Navbar.Brand>
                   <img
                     alt="CC"
@@ -121,8 +120,7 @@ function App() {
                     height="75"
                     className="d-inline-block align-top"
                   />
-                  {'   '}
-                  Caffeine Confessions
+                  {'   '} &nbsp;&nbsp; Caffeine Confessions
                 </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -70,10 +70,6 @@ function HomeScreen() {
         <QualityInfo />
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <p>idsrusdksk</p>
       </div>
     </div>
   );
