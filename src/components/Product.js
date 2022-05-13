@@ -33,7 +33,7 @@ function Product(props) {
       <img src={product.image} className="card-img-top" alt={product.name} />
       <Card.Body>
         <Card.Title style={{ color: 'white' }}>{product.name}</Card.Title>
-        <Card.Text style={{ color: 'white' }}>${product.price}</Card.Text>
+        <Card.Text style={{ color: 'white' }}>₹{product.price}</Card.Text>
         <Card.Text style={{ color: 'white' }}>{product.description}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>

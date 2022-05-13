@@ -48,7 +48,7 @@ function HomeScreen() {
   return (
     <div style={{ marginTop: '120px' }}>
       <Helmet>
-        <title>Caffeine Coffesions</title>
+        <title>Caffeine Confessions</title>
       </Helmet>
       <div className="home-screen-bg">
         {/* <h1>Featured Products</h1>

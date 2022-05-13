@@ -1,5 +1,4 @@
 import { React, useContext, useState, useEffect } from 'react';
-import logo from './logo.jpeg';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import Badge from 'react-bootstrap/Badge';
@@ -114,7 +113,17 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>Caffeine Confessions</Navbar.Brand>
+                <Navbar.Brand>
+                  <img
+                    alt="CC"
+                    src="/images/logo123.jpg"
+                    width="75"
+                    height="75"
+                    className="d-inline-block align-top"
+                  />
+                  {'   '}
+                  Caffeine Confessions
+                </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -203,7 +212,14 @@ function App() {
           {/* <Container className="mt-3"> */}
           <Routes>
             <Route path="/product/:slug" element={<ProductScreen />} />
-            <Route path="/cart" element={<CartScreen />} />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartScreen />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/search" element={<SearchScreen />} />
             <Route path="/menu" element={<MenuScreen />} />
             <Route path="/shop" element={<ShopScreen />} />
@@ -294,7 +310,4 @@ function App() {
   );
 }
 
-function Header() {
-  return <img src={logo} width="220px" height="180px" alt="Logo" />;
-}
 export default App;
