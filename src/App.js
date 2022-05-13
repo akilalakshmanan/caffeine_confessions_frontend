@@ -34,6 +34,8 @@ import ControlledCarousel from './components/ControlledCarousel';
 import { Card } from 'react-bootstrap';
 import MenuScreen from './screens/MenuScreen';
 import ShopScreen from './screens/ShopScreen';
+import OrderListScreen from './screens/OrderListScreen';
+import OrderHistoryScreen from './screens/OrderHistoryScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -56,9 +58,6 @@ function App() {
         const { data } = await instance.get('/api/orders/updateOrder', {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        // const {data} = await instance.post('/api/orders/updateOrder', {
-        //   headers: { Authorization: `Bearer ${userInfo.token}` },
-        // });
         console.log('data', data);
       } catch (err) {
         console.log(err);
@@ -91,35 +90,6 @@ function App() {
     fetchCategories();
   }, []);
 
-  const getMachineAction = async () => {
-    try {
-      if (userInfo) {
-        const response = await fetch(
-          `http://localhost:5000/newFile/${userInfo._id}`
-        );
-        console.log(response);
-        if (response.status === 200) {
-          // getLocalStream();
-          console.log('Machine successfully found.');
-          const myJson = await response.json(); //extract JSON from the http response
-          console.log(myJson);
-        } else {
-          console.log('not a 200');
-        }
-      } else {
-        console.log('restricted from calling newFile API');
-        // play()
-      }
-    } catch (err) {
-      // catches errors both in fetch and response.json
-      console.log(err);
-    } finally {
-      // do it again in 2 seconds
-      setTimeout(getMachineAction, 10000);
-    }
-  };
-
-  // getMachineAction();
   return (
     <BrowserRouter>
       <div
@@ -133,7 +103,6 @@ function App() {
             : 'site-container d-flex flex-column'
         }
       >
-        {/* <ToastContainer position="bottom-center" limit={1} /> */}
         <header>
           <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
             <Container>
@@ -223,29 +192,6 @@ function App() {
             </Container>
           </Navbar>
         </header>
-        {/* <div
-          className={
-            sidebarIsOpen
-              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-          }
-        >
-          <Nav className="flex-column text-white w-100 p-2">
-            <Nav.Item>
-              <strong>Categories</strong>
-            </Nav.Item>
-            {categories.map((category) => (
-              <Nav.Item key={category}>
-                <LinkContainer
-                  to={`/search?category=${category}`}
-                  onClick={() => setSidebarIsOpen(false)}
-                >
-                  <Nav.Link>{category}</Nav.Link>
-                </LinkContainer>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </div> */}
         <main
           style={{
             backgroundImage: 'url(' + '/images/bg_4.jpg' + ')',
@@ -272,37 +218,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-                path="/map"
-                element={
-                  <ProtectedRoute>
-                    <MapScreen />
-                  </ProtectedRoute>
-                }
-              /> */}
-            {/* <Route path="/placeorder" element={<PlaceOrderScreen />} /> */}
-            {/* <Route
-                path="/order/:id"
-                element={
-                  <ProtectedRoute>
-                    <OrderScreen />
-                  </ProtectedRoute>
-                }
-              ></Route> */}
-            {/* <Route
-                path="/orderhistory"
-                element={
-                  <ProtectedRoute>
-                    <OrderHistoryScreen />
-                  </ProtectedRoute>
-                }
-              ></Route> */}
-            {/* <Route
-                path="/shipping"
-                element={<ShippingAddressScreen />}
-              ></Route> */}
-            {/* <Route path="/payment" element={<PaymentMethodScreen />}></Route> */}
-            {/* Admin Routes */}
+            <Route
+              path="/orderhistory"
+              element={
+                <ProtectedRoute>
+                  <OrderHistoryScreen />
+                </ProtectedRoute>
+              }
+            ></Route>
             <Route
               path="/admin/dashboard"
               element={
@@ -311,14 +234,14 @@ function App() {
                 </AdminRoute>
               }
             ></Route>
-            {/* <Route
-                path="/admin/orders"
-                element={
-                  <AdminRoute>
-                    <OrderListScreen />
-                  </AdminRoute>
-                }
-              ></Route> */}
+            <Route
+              path="/admin/orders"
+              element={
+                <AdminRoute>
+                  <OrderListScreen />
+                </AdminRoute>
+              }
+            ></Route>
             <Route
               path="/admin/users"
               element={
@@ -370,57 +293,6 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// function play() {
-//   var sound      = document.createElement('audio');
-//   sound.id       = 'audio-player';
-//   sound.controls = 'controls';
-//   sound.src      = 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3';
-//   sound.type     = 'audio/mpeg';
-//   document.getElementById('root').appendChild(sound);
-//   var audio = document.getElementById("audio");
-//   audio.play();
-//   // <audio id="audio" src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"></audio>
-// }
-
-// const audio = new Audio( 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3' );
-// audio.muted = true;
-
-// const alert_elem = document.querySelector( '.alert' );
-
-// audio.play().then( () => {
-//   // already allowed
-//   alert_elem.remove();
-//   resetAudio();
-// } )
-// .catch( () => {
-//   // need user interaction
-//   alert_elem.addEventListener( 'click', ({ target }) => {
-//     if( target.matches('button') ) {
-//       const allowed = target.value === "1";
-//       if( allowed ) {
-//         audio.play()
-//           .then( resetAudio );
-//       }
-//       alert_elem.remove();
-//     }
-//   } );
-// } );
-
-// document.getElementById( 'btn' ).addEventListener( 'click', (e) => {
-//   if( audio.muted ) {
-//     console.log( 'silent notification' );
-//   }
-//   else {
-//     audio.play();
-//   }
-// } );
-
-// function resetAudio() {
-//   audio.pause();
-//   audio.currentTime = 0;
-//   audio.muted = false;
-// }
 
 function Header() {
   return <img src={logo} width="220px" height="180px" alt="Logo" />;
